@@ -16,6 +16,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>bean-factory</module>
+        <module>factory-impl</module>
     </modules>
 
     <properties>
@@ -24,6 +25,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mybatis-plus.version>3.4.2</mybatis-plus.version>
         <mysql.version>8.0.29</mysql.version>
+        <hutool.version>4.6.4</hutool.version>
+        <guava.version>20.0</guava.version>
+
     </properties>
 
     <dependencyManagement>
@@ -41,6 +45,17 @@
                 <version>${mysql.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -60,7 +75,15 @@
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
 
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

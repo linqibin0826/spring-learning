@@ -13,7 +13,7 @@ public class BeanFactoryTest {
 
     @Test
     public void test01() {
-
+        System.out.println("Hello");
     }
 }
 
