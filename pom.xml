@@ -17,6 +17,7 @@
     <modules>
         <module>bean-factory</module>
         <module>factory-impl</module>
+        <module>bean-life-cycle</module>
     </modules>
 
     <properties>
@@ -63,11 +64,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
         <dependency>
