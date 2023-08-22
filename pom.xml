@@ -18,6 +18,7 @@
         <module>bean-factory</module>
         <module>factory-impl</module>
         <module>bean-life-cycle</module>
+        <module>bean-postprocess</module>
     </modules>
 
     <properties>
