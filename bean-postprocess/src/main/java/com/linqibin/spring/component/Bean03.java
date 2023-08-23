@@ -18,6 +18,9 @@ public class Bean03 {
 
     private Bean02 bean02;
 
+    @Autowired
+    private Bean02 injectTest;
+
     private String home;
 
     public Bean03() {
