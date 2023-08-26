@@ -28,6 +28,10 @@ public class Application {
 
         // 我们可以使用Spring的BeanFactoryPostProcessor来解析。
 //        context.registerBean(ConfigurationClassPostProcessor.class);
+//        context.registerBean(MapperScannerConfigurer.class,
+//                bd -> bd.getPropertyValues()
+//                        .addPropertyValue("basePackage", "com.linqibin.spring.mapper")
+//        );
 
         // 现在我们自己简单实现一下，去处理这里面的一些功能， 就是把BeanConfig里面的Bean也加入到BeanDefinition
         context.registerBean(ComponentScanPostProcessor.class);
