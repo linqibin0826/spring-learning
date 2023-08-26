@@ -21,6 +21,7 @@
         <module>bean-postprocess</module>
         <module>beanfactory-postprocess</module>
         <module>aware-test</module>
+        <module>scope-test</module>
     </modules>
 
     <properties>
