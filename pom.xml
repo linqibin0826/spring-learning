@@ -20,6 +20,7 @@
         <module>bean-life-cycle</module>
         <module>bean-postprocess</module>
         <module>beanfactory-postprocess</module>
+        <module>aware-test</module>
     </modules>
 
     <properties>
