@@ -3,6 +3,7 @@ package com.linqibin.spring;
 import com.linqibin.spring.config.BeanConfig;
 import com.linqibin.spring.processor.AtBeanPostProcessor;
 import com.linqibin.spring.processor.ComponentScanPostProcessor;
+import com.linqibin.spring.processor.MapperPostProcessor;
 import org.springframework.context.support.GenericApplicationContext;
 
 import java.util.Arrays;
@@ -33,6 +34,9 @@ public class Application {
 
         // 处理@Bean的后置处理器
         context.registerBean(AtBeanPostProcessor.class);
+
+        // 动态生成Mapper接口的Bean对象
+        context.registerBean(MapperPostProcessor.class);
 
         // 刷新容器
         context.refresh();
