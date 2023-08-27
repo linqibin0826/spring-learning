@@ -2,7 +2,6 @@ package com.linqibin.spring.processor;
 
 import com.linqibin.spring.config.BeanConfig;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
@@ -29,7 +28,7 @@ import java.io.IOException;
  * @Date 2023/8/25 21:53
  * @Email 1214219989@qq.com
  */
-public class ComponentScanPostProcessor implements BeanFactoryPostProcessor, BeanDefinitionRegistryPostProcessor {
+public class ComponentScanPostProcessor implements BeanDefinitionRegistryPostProcessor {
 
     private static final String RESOURCE_PATTERN = "/**/*.class";
 

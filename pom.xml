@@ -22,6 +22,8 @@
         <module>05-beanfactory-postprocess</module>
         <module>06-aware-test</module>
         <module>07-scope-test</module>
+        <module>08-ajc-compile</module>
+        <module>09-dynamic-proxy</module>
     </modules>
 
     <properties>
