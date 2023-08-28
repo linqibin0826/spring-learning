@@ -24,6 +24,7 @@
         <module>07-scope-test</module>
         <module>08-ajc-compile</module>
         <module>09-dynamic-proxy</module>
+        <module>10-spring-aop</module>
     </modules>
 
     <properties>
