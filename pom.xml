@@ -25,6 +25,7 @@
         <module>08-ajc-compile</module>
         <module>09-dynamic-proxy</module>
         <module>10-spring-aop</module>
+        <module>11-aspect-advisor</module>
     </modules>
 
     <properties>
