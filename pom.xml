@@ -26,6 +26,7 @@
         <module>09-dynamic-proxy</module>
         <module>10-spring-aop</module>
         <module>11-aspect-advisor</module>
+        <module>12-trans2interceptor</module>
     </modules>
 
     <properties>

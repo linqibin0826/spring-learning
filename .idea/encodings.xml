@@ -25,6 +25,8 @@
     <file url="file://$PROJECT_DIR$/10-spring-aop/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/11-aspect-advisor/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/11-aspect-advisor/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/12-trans2interceptor/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/12-trans2interceptor/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
