@@ -1,6 +1,7 @@
-package org.springframework.aop.framework.autoproxy;
+package org.springframework.aop.framework;
 
 import com.google.common.collect.Lists;
+import org.aopalliance.intercept.MethodInvocation;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -9,7 +10,7 @@ import org.springframework.aop.aspectj.AspectJAfterReturningAdvice;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.aspectj.AspectJMethodBeforeAdvice;
 import org.springframework.aop.aspectj.SingletonAspectInstanceFactory;
-import org.springframework.aop.framework.ProxyFactory;
+import org.springframework.aop.interceptor.ExposeInvocationInterceptor;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 
 import java.lang.reflect.Method;
@@ -26,7 +27,7 @@ import java.util.List;
  */
 public class GenerateInterceptor {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Throwable {
         // 通知对象如何创建
         SingletonAspectInstanceFactory factory = new SingletonAspectInstanceFactory(new Aspect1());
 
@@ -70,12 +71,26 @@ public class GenerateInterceptor {
 
         // 通知统一转换成MethodInterceptor
         ProxyFactory proxyFactory = new ProxyFactory();
-        proxyFactory.setTarget(new Target1());
+        Target1 target = new Target1();
+        proxyFactory.setTarget(target);
         // 添加低级切面
+        proxyFactory.addAdvice(ExposeInvocationInterceptor.INSTANCE);
         proxyFactory.addAdvisors(advisors);
         List<Object> interceptors = proxyFactory.getInterceptorsAndDynamicInterceptionAdvice(Target1.class.getMethod("foo"), Target1.class);
         interceptors.forEach(System.out::println);
+
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+        // 创建调用链对象，去执行
+        MethodInvocation invocation = new ReflectiveMethodInvocation(null, target, Target1.class.getMethod("foo"), new Object[0],
+                Target1.class, interceptors
+        );
+        // 需要把MethodInvocation暴露出去（ThreadLocal），某些通知可能需要这个对象。
+        invocation.proceed();
+
     }
+
+
 
     static class Target1{
         public void foo() {
