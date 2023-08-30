@@ -82,13 +82,17 @@ public class GenerateInterceptor {
         System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
         // 创建调用链对象，去执行
+        // 环绕通知s + 目标对象
         MethodInvocation invocation = new ReflectiveMethodInvocation(null, target, Target1.class.getMethod("foo"), new Object[0],
                 Target1.class, interceptors
         );
         // 需要把MethodInvocation暴露出去（ThreadLocal），某些通知可能需要这个对象。
         invocation.proceed();
 
+
     }
+
+
 
 
 
