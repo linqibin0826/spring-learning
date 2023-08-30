@@ -27,6 +27,7 @@
         <module>10-spring-aop</module>
         <module>11-aspect-advisor</module>
         <module>12-trans2interceptor</module>
+        <module>13-dispatcher-servlet</module>
     </modules>
 
     <properties>
@@ -95,6 +96,11 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 
