@@ -1,4 +1,4 @@
-package com.linqibin.spring;
+package com.linqibin.spring.config;
 
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletRegistrationBean;
@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 /**
  * @Author linqibin
@@ -17,7 +18,7 @@ import org.springframework.web.servlet.DispatcherServlet;
  * @Email 1214219989@qq.com
  */
 @Configuration
-@ComponentScan
+@ComponentScan(basePackages = "com.linqibin.spring")
 // 指定去哪里读取属性
 @PropertySource("classpath:/application.properties")
 @EnableConfigurationProperties(value = {WebMvcProperties.class, ServerProperties.class})
@@ -48,5 +49,13 @@ public class WebConfig {
         return bean;
     }
 
+    /**
+     * requestMappingHandlerMapping在初始化的时候会扫描所有的RequestMapping的方法，存储在DispatcherServlet中的一个变量中。
+     * @return
+     */
+    @Bean
+    public RequestMappingHandlerMapping requestMappingHandlerMapping() {
+        return new RequestMappingHandlerMapping();
+    }
 }
 
