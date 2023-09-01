@@ -1,5 +1,8 @@
 package com.linqibin.spring.config;
 
+import com.google.common.collect.Lists;
+import com.linqibin.spring.annotation.TokenArgumentResolver;
+import com.linqibin.spring.annotation.YmlReturnValueHandler;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletRegistrationBean;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties;
@@ -56,6 +59,15 @@ public class WebConfig {
     @Bean
     public RequestMappingHandlerMapping requestMappingHandlerMapping() {
         return new RequestMappingHandlerMapping();
+    }
+
+    @Bean
+    public MyRequestMappingHandlerAdapter myRequestMappingHandlerAdapter() {
+        MyRequestMappingHandlerAdapter handlerAdapter = new MyRequestMappingHandlerAdapter();
+        // 添加自定义的参数解析器
+        handlerAdapter.setCustomArgumentResolvers(Lists.newArrayList(new TokenArgumentResolver()));
+        handlerAdapter.setCustomReturnValueHandlers(Lists.newArrayList(new YmlReturnValueHandler()));
+        return handlerAdapter;
     }
 }
 
