@@ -1,5 +1,7 @@
 package com.linqibin.spring.controller;
 
+import com.linqibin.spring.annotation.Token;
+import com.linqibin.spring.annotation.YmlResponse;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -26,6 +28,17 @@ public class TestController {
     @RequestMapping("/request")
     public String test02() {
         return "hello request";
+    }
+
+    @GetMapping("/token")
+    public String tokenTest(@Token String token) {
+        return token;
+    }
+
+    @GetMapping("/yml")
+    @YmlResponse
+    public String ymlTest(@Token String token) {
+        return token;
     }
 }
 
