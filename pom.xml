@@ -28,6 +28,7 @@
         <module>11-aspect-advisor</module>
         <module>12-trans2interceptor</module>
         <module>13-dispatcher-servlet</module>
+        <module>14-mock-parameter-parse</module>
     </modules>
 
     <properties>

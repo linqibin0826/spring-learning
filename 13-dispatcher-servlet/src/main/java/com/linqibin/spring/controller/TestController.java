@@ -5,10 +5,10 @@ import com.linqibin.spring.annotation.YmlResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 /**
  * @Author linqibin
@@ -20,8 +20,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestController {
 
     @GetMapping("/get")
-    public String test() {
-        System.out.println("hello get");
+    @ResponseBody
+    public String test(@RequestParam String hello, @RequestParam String world) throws Exception {
+        Method test = TestController.class.getMethod("test", String.class, String.class);
+        for (Parameter parameter : test.getParameters()) {
+            System.out.println(parameter.getName());
+        }
+
         return "hello get";
     }
 
