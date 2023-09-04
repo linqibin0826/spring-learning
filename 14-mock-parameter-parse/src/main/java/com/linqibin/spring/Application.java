@@ -1,11 +1,16 @@
 package com.linqibin.spring;
 
+import com.google.common.collect.Lists;
+import lombok.Data;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.DefaultParameterNameDiscoverer;
 import org.springframework.core.MethodParameter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockPart;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -16,6 +21,8 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolverCompo
 import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor;
+import org.springframework.web.servlet.mvc.method.annotation.ServletModelAttributeMethodProcessor;
 import org.springframework.web.servlet.mvc.method.annotation.ServletRequestDataBinderFactory;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +44,8 @@ public class Application {
         context.refresh();
 
         // 将控制器中的方法，封装成HandlerMethod
-        HandlerMethod testMethod = new HandlerMethod(new TestController(), TestController.class.getMethod("testMethod", String.class, Integer.class, String.class, String.class, MultipartFile.class, String.class));
+        HandlerMethod testMethod = new HandlerMethod(new TestController(), TestController.class.getMethod("testMethod", String.class, Integer.class, String.class, String.class, MultipartFile.class, String.class, User.class, User.class, User.class));
+
 
         // 构造参数
         HttpServletRequest request = mockRequest();
@@ -57,9 +65,11 @@ public class Application {
                 // 必须携带RequestParam参数
                 new RequestParamMethodArgumentResolver(beanFactory, false),
                 new RequestHeaderMethodArgumentResolver(beanFactory),
+                new ServletModelAttributeMethodProcessor(false),
+                new RequestResponseBodyMethodProcessor(Lists.newArrayList(new MappingJackson2HttpMessageConverter())),
+                new ServletModelAttributeMethodProcessor(true),
                 // 用来解析不带RequestParam注解的参数，加了这个  第三个参数才会被解析
-                new RequestParamMethodArgumentResolver(beanFactory, true)
-                );
+                new RequestParamMethodArgumentResolver(beanFactory, true));
 
         for (MethodParameter methodParameter : testMethod.getMethodParameters()) {
             methodParameter.initParameterNameDiscovery(new DefaultParameterNameDiscoverer());
@@ -86,6 +96,11 @@ public class Application {
         request.setParameter("sex", "male");
         request.setContentType("application/json");
         request.addPart(new MockPart("attach", "profile", "hello".getBytes(StandardCharsets.UTF_8)));
+
+        request.setParameter("username", "linqibin");
+        request.setParameter("password", "123456");
+
+        request.setContent("{\"username\":\"youmei\",\"password\":\"123\"}".getBytes(StandardCharsets.UTF_8));
         return new StandardServletMultipartResolver().resolveMultipart(request);
     }
 
@@ -96,9 +111,19 @@ public class Application {
                                String sex,
                                @RequestParam(name = "javaHome", defaultValue = "${JAVA_HOME}") String javaHome,
                                @RequestParam MultipartFile attach,
-                               @RequestHeader(name = "Content-Type") String header) throws Exception {
+                               @RequestHeader(name = "Content-Type") String header,
+                               @ModelAttribute User user,
+                               User user1,
+                               @RequestBody User user2) throws Exception {
 
         }
+    }
+
+    @Data
+    static class User {
+        private String username;
+
+        private String password;
     }
 }
 
