@@ -31,6 +31,7 @@
         <module>14-mock-parameter-parse</module>
         <module>15-type-converter</module>
         <module>16-init-binder</module>
+        <module>17-mvc-process</module>
     </modules>
 
     <properties>

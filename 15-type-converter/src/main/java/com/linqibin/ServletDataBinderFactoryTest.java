@@ -38,7 +38,7 @@ public class ServletDataBinderFactoryTest {
         ConfigurableWebBindingInitializer initializer = new ConfigurableWebBindingInitializer();
         initializer.setConversionService(service);
 
-        // ③：使用默认的ConversionService转换， 要设置时间格式，使用@DateTimeFormat，内部会解析该注解
+        // ③：使用默认的ConversionService转换， 要设置时间格式，使用@DateTimeFormat，内部会解析该注解. SpringBoot用的ApplicationConversionService
         DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
         initializer.setConversionService(conversionService);
 
