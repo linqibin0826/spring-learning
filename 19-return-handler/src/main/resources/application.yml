@@ -1,0 +1,9 @@
+spring:
+  freemarker:
+    settings:
+      classic_compatible: true #处理空值
+      datetime_format: yyy-MM-dd HH:mm
+      number_format: 0.##
+    suffix: .ftl
+    template-loader-path:
+      - classpath:/templates
