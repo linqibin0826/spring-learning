@@ -34,6 +34,7 @@
         <module>17-mvc-process</module>
         <module>18-model-attribute</module>
         <module>19-return-handler</module>
+        <module>20-message-converter</module>
     </modules>
 
     <properties>
