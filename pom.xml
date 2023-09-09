@@ -35,6 +35,7 @@
         <module>18-model-attribute</module>
         <module>19-return-handler</module>
         <module>20-message-converter</module>
+        <module>21-body-extention</module>
     </modules>
 
     <properties>
