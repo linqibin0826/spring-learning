@@ -1,8 +1,17 @@
 package com.linqibin;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.AbstractUrlBasedView;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
@@ -29,8 +38,44 @@ public class WebConfig {
             model.put("name", "linqibin");
 
             return modelAndView;
-
         }
+
+        public String test02() {
+            return "test02";
+        }
+
+        @ModelAttribute
+        public User test03() {
+            return new User("linqibin", 20);
+        }
+
+        public User test04() {
+            return new User("youMei", 20);
+        }
+
+        public HttpEntity<User> test05() {
+            User linqibin = new User("linqibin", 20);
+            return new ResponseEntity<>(linqibin, HttpStatus.OK);
+        }
+
+        public HttpHeaders test06() {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Content-Type", "text/plain");
+            return headers;
+        }
+
+        @ResponseBody
+        public User test07() {
+            return new User("youMei", 18);
+        }
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class User {
+        private String name;
+        private Integer age;
     }
 
 
