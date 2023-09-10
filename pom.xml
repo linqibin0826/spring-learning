@@ -39,6 +39,7 @@
         <module>22-exception-handler</module>
         <module>23-error-controller</module>
         <module>24-bean-name-handlerMapping</module>
+        <module>25-resource-handlerMapping</module>
     </modules>
 
     <properties>
