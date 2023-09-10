@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="fastRequestCurrentProjectLocalConfig">
-    <option name="enableEnv" />
-    <option name="enableProject" />
+    <option name="domain" value="http://localhost:8080" />
+    <option name="enableEnv" value="local" />
+    <option name="enableProject" value="23-error-controller" />
     <option name="initFlag" value="1" />
   </component>
 </project>

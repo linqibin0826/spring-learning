@@ -1,26 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="fastRequestCurrentParamGroup">
-    <option name="className" value="com.linqibin.spring.controller.TestController" />
+    <option name="className" value="com.linqibin.WebConfig.TestController" />
     <option name="filePath" value="" />
     <option name="method" value="test" />
-    <option name="module" value="13-dispatcher-servlet" />
-    <option name="originUrl" value="/test/get" />
-    <option name="requestParamMap">
-      <map>
-        <entry key="hello">
-          <value>
-            <Object />
-          </value>
-        </entry>
-        <entry key="world">
-          <value>
-            <Object />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="returnDocument" value="&quot;No comment,Type =String&quot;" />
-    <option name="url" value="/test/get" />
+    <option name="module" value="23-error-controller" />
+    <option name="originUrl" value="/test" />
+    <option name="url" value="/test" />
   </component>
 </project>

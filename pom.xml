@@ -37,6 +37,7 @@
         <module>20-message-converter</module>
         <module>21-body-extention</module>
         <module>22-exception-handler</module>
+        <module>23-error-controller</module>
     </modules>
 
     <properties>
