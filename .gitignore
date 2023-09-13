@@ -12,6 +12,8 @@ target/
 *.iml
 *.ipr
 .fastRequest
+.idea
+
 
 ### Eclipse ###
 .apt_generated
