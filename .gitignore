@@ -12,7 +12,7 @@ target/
 *.iml
 *.ipr
 .fastRequest
-.idea
+.idea/
 
 
 ### Eclipse ###

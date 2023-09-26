@@ -3,16 +3,19 @@ package com.linqibin;
 import com.google.common.collect.Sets;
 import lombok.Data;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.WebApplicationType;
+import org.springframework.boot.*;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.core.env.StandardEnvironment;
+import org.springframework.core.io.support.SpringFactoriesLoader;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.List;
 
 /**
  * 演示Springboot启动过程
@@ -55,12 +58,49 @@ public class Application {
         Class<?> mainClass = (Class<?>)deduceMainApplicationClass.invoke(application);
         System.out.println("main方法所在的类是：" + mainClass);
 
-        ConfigurableApplicationContext context = application.run(args);
-        for (String definitionName : context.getBeanDefinitionNames()) {
-            System.out.println(definitionName + "->" + context.getBeanFactory().getBeanDefinition(definitionName).getResourceDescription());
+//        ConfigurableApplicationContext context = application.run(args);
+//        for (String definitionName : context.getBeanDefinitionNames()) {
+//            System.out.println(definitionName + "->" + context.getBeanFactory().getBeanDefinition(definitionName).getResourceDescription());
+//        }
+//
+//        context.close();
+        // 6.事件监听机制
+        eventListener(application, args);
+    }
+
+
+    /**
+     * Springboot启动过程中的八大事件
+     */
+    private static void eventListener(SpringApplication application, String[] args) throws Exception {
+        // 1. load SpringApplicationRunListener from spring.factories
+        List<String> runListeners = SpringFactoriesLoader.loadFactoryNames(SpringApplicationRunListener.class, Application.class.getClassLoader());
+        for (String listener : runListeners) {
+            Constructor<?> constructor = Class.forName(listener).getConstructor(SpringApplication.class, String[].class);
+            SpringApplicationRunListener publisher = (SpringApplicationRunListener)constructor.newInstance(application, args);
+            // Springboot启动过程中8大事件
+            // SpringBoot start
+            ConfigurableBootstrapContext bootstrapContext = new DefaultBootstrapContext();
+            publisher.starting(bootstrapContext);
+            // prepare environment
+            publisher.environmentPrepared(bootstrapContext, new StandardEnvironment());
+            // prepare context
+            GenericApplicationContext context = new GenericApplicationContext();
+            publisher.contextPrepared(context);
+            // context loaded
+            publisher.contextLoaded(context);
+            context.refresh();
+            // context stared
+            publisher.started(context);
+            // running
+            publisher.running(context);
+            // failed
+            publisher.failed(context, new RuntimeException());
+            // 关闭容器
+            context.close();
+
         }
 
-        context.close();
     }
 
     @Data

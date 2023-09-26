@@ -24,7 +24,8 @@ import java.util.Map;
 public class BeanApplication {
 
     public static void main(String[] args) throws Exception {
-        ConfigurableApplicationContext context = SpringApplication.run(BeanApplication.class, args);
+        ConfigurableApplicationContext context = null;
+        context = SpringApplication.run(BeanApplication.class, args);
 
         /*
             1. 什么是BeanFactory?
