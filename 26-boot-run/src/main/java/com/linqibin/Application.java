@@ -33,7 +33,7 @@ public class Application {
         // 1.获取BeanDefinition主源
         SpringApplication application = new SpringApplication(Application.class);
         // 为容器设置更多的源
-        application.setSources(Sets.newHashSet("classpath:bean01.xml"));
+        application.setSources(Sets.newHashSet("classpath:bean.xml"));
 
         // 2.推断应用类型(通过判断类路径下面存不存在某些类【DispatcherServlet】)
         Method deduceFromClasspath = WebApplicationType.class.getDeclaredMethod("deduceFromClasspath");
