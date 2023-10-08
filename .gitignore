@@ -13,6 +13,7 @@ target/
 *.ipr
 .fastRequest
 .idea/
+**/rebel.xml
 
 
 ### Eclipse ###

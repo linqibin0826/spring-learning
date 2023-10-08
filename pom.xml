@@ -41,6 +41,7 @@
         <module>24-bean-name-handlerMapping</module>
         <module>25-resource-handlerMapping</module>
         <module>26-boot-run</module>
+        <module>27-tomcat-spring</module>
     </modules>
 
     <properties>
