@@ -42,6 +42,7 @@
         <module>25-resource-handlerMapping</module>
         <module>26-boot-run</module>
         <module>27-tomcat-spring</module>
+        <module>28-auto-config</module>
     </modules>
 
     <properties>
